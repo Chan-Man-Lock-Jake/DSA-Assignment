@@ -4,14 +4,16 @@
 #include <iostream>
 #include <string>
 #include "AVLBST.h"
+#include "Actor.h"
+#include "Movie.h"
 using namespace std;
 // Function Prototypes
 void adminMenu();
 void userMenu();
 
 // Global Data Structures
-//AVLBST<Actor> actorTree;
-//AVLBST<Movie> movieTree;
+AVLBST<Actor> actorTree;
+AVLBST<Movie> movieTree;
 //HashTable<Actor> actorHashTable(100);  // Assuming 100 as hash table size
 //HashTable<Movie> movieHashTable(100);
 
@@ -59,12 +61,15 @@ void adminMenu() {
     case 1: {
         string name;
         int yearOfBirth;
+        int id;
         cout << "Enter actor name: ";
         cin.ignore();
         getline(cin, name);
         cout << "Enter actor year of birth: ";
         cin >> yearOfBirth;
-        //Actor* newActor = new Actor(name, yearOfBirth);
+        cout << "Enter actor id: ";
+        cin >> id;
+        Actor* newActor = new Actor(id, name, yearOfBirth);
         //actorTree.insert(newActor);
         //actorHashTable.insert(yearOfBirth, newActor);
         cout << "Actor added successfully.\n";
