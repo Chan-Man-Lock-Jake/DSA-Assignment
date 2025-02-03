@@ -29,4 +29,4 @@ public:
     BinaryNode<T>* rightRotate(BinaryNode<T>*& root);
 };
 
-
+#include "AVLBST.tpp"
