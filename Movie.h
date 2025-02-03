@@ -1,17 +1,18 @@
 #pragma once
-#include <iostream>
 #include <string>
 using namespace std;
-class Movie
-{
+
+class Movie {
 public:
-    string title;
     int id;
-    string plot;
+    string name;
     int yearOfRelease;
-    //vector<Actor*> actors; // References to actors in the movie
 
-    Movie(std::string title, std::string plot, int yearOfRelease)
-        : title(title), plot(plot), yearOfRelease(yearOfRelease) {}
+    Movie();
+
+    Movie(int id, string name, int yearOfRelease) { 
+        this->id = id;
+        this->name = name;
+        this->yearOfRelease = yearOfRelease;
+    }
 };
-

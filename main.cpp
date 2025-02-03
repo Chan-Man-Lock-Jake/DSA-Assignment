@@ -12,8 +12,8 @@ void adminMenu();
 void userMenu();
 
 // Global Data Structures
-AVLBST<Actor> actorTree;
-AVLBST<Movie> movieTree;
+//AVLBST<Actor> actorTree;
+//AVLBST<Movie> movieTree;
 //HashTable<Actor> actorHashTable(100);  // Assuming 100 as hash table size
 //HashTable<Movie> movieHashTable(100);
 
@@ -69,7 +69,7 @@ void adminMenu() {
         cin >> yearOfBirth;
         cout << "Enter actor id: ";
         cin >> id;
-        Actor* newActor = new Actor(id, name, yearOfBirth);
+        //Actor* newActor = new Actor(id, name, yearOfBirth);
         //actorTree.insert(newActor);
         //actorHashTable.insert(yearOfBirth, newActor);
         cout << "Actor added successfully.\n";

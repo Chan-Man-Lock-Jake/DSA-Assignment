@@ -2,7 +2,7 @@
 
 // typedef std::string ItemType;
 typedef int ItemType;
-template <typename T> 
+template <typename T>
 struct BinaryNode
 {
 	ItemType key;		// node key
