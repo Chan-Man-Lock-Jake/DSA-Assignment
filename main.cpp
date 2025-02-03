@@ -6,15 +6,19 @@
 #include "AVLBST.h"
 #include "Actor.h"
 #include "Movie.h"
+#include "BinaryNode.h"
+#include "HashTable.h"
+
 using namespace std;
 // Function Prototypes
 void adminMenu();
 void userMenu();
 
 // Global Data Structures
-//AVLBST<Actor> actorTree;
+
+AVLBST<Actor> actorTree;
 //AVLBST<Movie> movieTree;
-//HashTable<Actor> actorHashTable(100);  // Assuming 100 as hash table size
+HashTable<Actor> actorHashTable(100);  // Assuming 100 as hash table size
 //HashTable<Movie> movieHashTable(100);
 
 int main() {
@@ -69,9 +73,15 @@ void adminMenu() {
         cin >> yearOfBirth;
         cout << "Enter actor id: ";
         cin >> id;
-        //Actor* newActor = new Actor(id, name, yearOfBirth);
-        //actorTree.insert(newActor);
-        //actorHashTable.insert(yearOfBirth, newActor);
+
+        // Dynamically allocate a new Actor object
+        Actor* actorPtr = new Actor(id, name, yearOfBirth);
+
+        // Insert into the actor tree (assuming it takes a pointer)
+        actorTree.insert(id, *actorPtr);
+
+        // Insert into the hash table (assuming it takes a pointer)
+        actorHashTable.insert(actorPtr, yearOfBirth);
         cout << "Actor added successfully.\n";
         break;
     }

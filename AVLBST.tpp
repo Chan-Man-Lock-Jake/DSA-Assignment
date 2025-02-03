@@ -1,5 +1,7 @@
 #include <iostream>
 #include "AVLBST.h"
+#include "Actor.h"
+#include "Movie.h"
 
 template <typename T>
 AVLBST<T>::AVLBST()
@@ -17,7 +19,7 @@ BinaryNode<T>* AVLBST<T>::search(BinaryNode<T>* root, ItemType key)
 {
     if (root == nullptr || root->key == key) return root == nullptr ? nullptr : root;
     // DOES NOT ACCOUNT FOR DUPLICATE VALUE
-    return search(key < root->item ? root->left : root->right, key); // If target is less than root, left subtree, else right subtree
+    return search(key < root->key ? root->left : root->right, key); // If target is less than root, left subtree, else right subtree
 }
 
 template <typename T>
@@ -26,10 +28,10 @@ void AVLBST<T>::insert(ItemType key, T value)
     insert(root, key, value);
 }
 template <typename T>
-void AVLBST<T>::insert(BinaryNode<T>* &root, ItemType key, T value)
+void AVLBST<T>::insert(BinaryNode<T>*& root, ItemType key, T value)
 {
     if (root == nullptr) {
-        root = new BinaryNode(key, value);
+        root = new BinaryNode<T>(key, value);
         return;
     }
     // DOES NOT ACCOUNT FOR DUPLICATE VALUE
@@ -59,7 +61,7 @@ void AVLBST<T>::remove(ItemType key)
     remove(root, key);
 }
 template <typename T>
-void AVLBST<T>::remove(BinaryNode<T>* &root, ItemType key)
+void AVLBST<T>::remove(BinaryNode<T>*& root, ItemType key)
 {
     if (root == nullptr) return; // Cannot find target
     if (root->key == key) {
@@ -82,7 +84,7 @@ void AVLBST<T>::remove(BinaryNode<T>* &root, ItemType key)
             }
             ItemType tempKey = predecessor->key;
             T tempValue = predecessor->value;
-            remove(root->left, key);
+            remove(root->left, tempKey);
             root->key = tempKey;
             root->value = tempValue;
         }
@@ -135,7 +137,7 @@ int AVLBST<T>::getbalance(BinaryNode<T>* root)
 }
 
 template <typename T>
-BinaryNode<T>* AVLBST<T>::leftRotate(BinaryNode<T>* &root)
+BinaryNode<T>* AVLBST<T>::leftRotate(BinaryNode<T>*& root)
 {
     BinaryNode<T>* temp = root->right;
     root->right = temp->left;
@@ -148,7 +150,7 @@ BinaryNode<T>* AVLBST<T>::leftRotate(BinaryNode<T>* &root)
     return root;
 }
 template <typename T>
-BinaryNode<T>* AVLBST<T>::rightRotate(BinaryNode<T>  * &root)
+BinaryNode<T>* AVLBST<T>::rightRotate(BinaryNode<T>*& root)
 {
     BinaryNode<T>* temp = root->left;
     root->left = temp->right;
@@ -168,3 +170,5 @@ unsigned long hashString(const std::string& str) {
     }
     return hash;
 }
+template class AVLBST<Actor>;
+template class AVLBST<Movie>;
